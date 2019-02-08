@@ -1,13 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Middleware;
 
-use App\Reading;
-use Illuminate\Http\Request;
+use Closure;
 
-class ReadingController extends Controller
+class CorsMiddleware
 {
-    public function acceptRequest() 
+    /**
+     * Run the request filter.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
     {
         $headers = [
             'Access-Control-Allow-Origin'      => '*',
@@ -16,19 +22,15 @@ class ReadingController extends Controller
             'Access-Control-Max-Age'           => '86400',
             'Access-Control-Allow-Headers'     => 'Content-Type, Authorization, X-Requested-With'
         ];
-        
-        $response = response()->json('smth');
+
+        $response = $next($request);
 
         foreach($headers as $key => $value)
         {
             $response->header($key, $value);
         }
-        
+
         return $response;
     }
 
-    public function showAllReadings()
-    {
-        return response()->json(Reading::orderBy('created_at', 'desc')->first());
-    }
 }

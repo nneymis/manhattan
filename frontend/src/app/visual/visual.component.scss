@@ -1,6 +1,25 @@
 .visual {
-    mat-progress-spinner {
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    .visual__wrapper {
+        display: inline-block;
         margin: 0 auto;
-        transform: rotate(-135deg);
+        position: relative;
+
+        mat-progress-spinner {
+            transform: rotate(-180deg);
+        }
+
+        .visual__value {
+            font-size: 150px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+        }
     }
 }

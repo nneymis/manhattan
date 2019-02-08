@@ -13,32 +13,39 @@ const maxPercent = 75;
 export class VisualComponent implements OnInit {
 
   data:SensorData;
-  value:number;
+  value:number = 0;
   value2:number;
 
   constructor(private sensorService:SensorService) { }
 
   ngOnInit() {
+    this.update();
+    setInterval(() => {
+      this.update();
+    }, 5000);
+    
+  }
+
+  update() {
     this.sensorService.getData().subscribe(data => {
       this.data = data;
-      this.count(this.data.value3, 'value2', 'value');
+      console.log(this.data);
+      this.count(this.data.co, 'value');
     });
   }
 
-  count(limit:number, text:string, spinner:string) {
-    this[text] = 0;
-    this[spinner] = 0;
-
-    let spinnerLimit = limit / 100 * maxPercent;
+  count(limit:number, variable:string) {
+    let step:number = Math.abs(limit - this[variable]) / 10;
     let interval = setInterval(() => {
-      if (this[text] < limit) {
-        this[text]++;
-        this[spinner] += (maxPercent / 100);
-      } else {
-        this[text] = limit;
-        this[spinner] = spinnerLimit;
+      if (Math.abs(this[variable] - limit) < limit/200) {
+        this[variable] = limit;
         clearInterval(interval);
+      } else if (this[variable] < limit) {
+        this[variable] += step;
+      } else {
+        this[variable] -= step;
       }
+      step = Math.abs(limit - this[variable]) / 10;
     }, 50);
   }
 }

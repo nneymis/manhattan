@@ -1,7 +1,7 @@
 export class SensorData {
     id:number;
-    value1:number;
-    value2:number;
-    value3:number;
-    date:Date;
+    lpg:number;
+    co:number;
+    smoke:number;
+    created_at:Date;
 }

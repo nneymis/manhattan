@@ -1,8 +1,10 @@
 <div class="visual">
-  <mat-progress-spinner
-    [value]="value"
-    diameter="500"
-    strokeWidth="60"
-  ></mat-progress-spinner>
-  <span>{{value2}}</span>
+  <div class="visual__wrapper">
+    <mat-progress-spinner
+      [value]="value"
+      diameter="500"
+      strokeWidth="60"
+    ></mat-progress-spinner>
+    <span class="visual__value">{{value | number:'2.2-2'}}</span>
+  </div>
 </div>

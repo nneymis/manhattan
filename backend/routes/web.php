@@ -15,6 +15,7 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
+$router->group(['prefix' => 'api', 'middleware' => 'cors'], function () use ($router) {
+    $router->options('readings', ['uses' => 'ReadingController@acceptRequest']);
     $router->get('readings', ['uses' => 'ReadingController@showAllReadings']);
 });
