@@ -1,7 +1,11 @@
 export class SensorData {
     id:number;
-    lpg:number;
-    co:number;
-    smoke:number;
+    label:string;
+    value:number;
+    unit:string;
+    highestValue:number;
     created_at:Date;
+    //used for displaying:
+    currentValue:number;
+    circlePercent:number;
 }

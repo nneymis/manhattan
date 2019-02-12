@@ -15,9 +15,10 @@ class CreateReadingsTable extends Migration
     {
         Schema::create('readings', function (Blueprint $table) {
             $table->increments('id');
-            $table->float('lpg');
-            $table->float('co');
-            $table->float('smoke');
+            $table->string('label');
+            $table->float('value');
+            $table->string('unit');
+            $table->float('highestValue');
 
             $table->timestamps();
         });

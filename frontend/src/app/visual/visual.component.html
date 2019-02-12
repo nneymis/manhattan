@@ -1,10 +1,44 @@
-<div class="visual">
-  <div class="visual__wrapper">
-    <mat-progress-spinner
-      [value]="value"
-      diameter="500"
-      strokeWidth="60"
-    ></mat-progress-spinner>
-    <span class="visual__value">{{value | number:'2.2-2'}}</span>
+<div class="wrapper">
+  <div class="element-wrapper" *ngIf="data[0]">
+    <div class="visual visual--1 visual--small">
+      <div class="visual__wrapper">
+        <mat-progress-spinner
+          [value]="data[0].circlePercent"
+          diameter="300"
+          strokeWidth="40"
+        ></mat-progress-spinner>
+        <span class="visual__value">{{data[0].currentValue | number:'2.2-2'}}</span>
+        <span class="visual__label">{{data[0].label}}</span>
+        <span class="visual__unit">{{data[0].unit}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="element-wrapper" *ngIf="data[2]">
+    <div class="visual visual--3 visual--small">
+      <div class="visual__wrapper">
+        <mat-progress-spinner
+          [value]="data[2].circlePercent"
+          diameter="300"
+          strokeWidth="40"
+        ></mat-progress-spinner>
+        <span class="visual__value">{{data[2].currentValue | number:'2.2-2'}}</span>
+        <span class="visual__label">{{data[2].label}}</span>
+        <span class="visual__unit">{{data[2].unit}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="element-wrapper" *ngIf="data[1]">
+    <div class="visual visual--2">
+      <div class="visual__wrapper">
+        <mat-progress-spinner
+          [value]="data[1].circlePercent"
+          diameter="450"
+          strokeWidth="55"
+        ></mat-progress-spinner>
+        <span class="visual__value">{{data[1].currentValue | number:'2.2-2'}}</span>
+        <span class="visual__label">{{data[1].label}}</span>
+        <span class="visual__unit">{{data[1].unit}}</span>
+      </div>
+    </div>
   </div>
 </div>

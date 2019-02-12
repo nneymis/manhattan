@@ -12,40 +12,43 @@ const maxPercent = 75;
 })
 export class VisualComponent implements OnInit {
 
-  data:SensorData;
-  value:number = 0;
-  value2:number;
+  data:SensorData[] = [];
 
   constructor(private sensorService:SensorService) { }
 
   ngOnInit() {
-    this.update();
     setInterval(() => {
       this.update();
-    }, 5000);
-    
+    }, 2000);
   }
 
   update() {
-    this.sensorService.getData().subscribe(data => {
+    this.sensorService.getData(this.data).subscribe(data => {
       this.data = data;
-      console.log(this.data);
-      this.count(this.data.co, 'value');
+      this.data.forEach(element => {
+        this.count(element);
+      });
     });
   }
 
-  count(limit:number, variable:string) {
-    let step:number = Math.abs(limit - this[variable]) / 10;
+  count(data:SensorData) {
+    let circleValue:number = 100 / (data.highestValue / data.value);
+    let circleStep:number = Math.abs(circleValue - data.circlePercent) / 10;
+    let step:number = Math.abs(data.value - data.currentValue) / 10;
     let interval = setInterval(() => {
-      if (Math.abs(this[variable] - limit) < limit/200) {
-        this[variable] = limit;
+      if (Math.abs(data.currentValue - data.value) < 0.01) {
+        data.currentValue = data.value;
+        data.circlePercent = circleValue;
         clearInterval(interval);
-      } else if (this[variable] < limit) {
-        this[variable] += step;
+      } else if (data.currentValue < data.value) {
+        data.currentValue += step;
+        data.circlePercent += circleStep;
       } else {
-        this[variable] -= step;
+        data.currentValue -= step;
+        data.circlePercent -= circleStep;
       }
-      step = Math.abs(limit - this[variable]) / 10;
+      step = Math.abs(data.value - data.currentValue) / 10;
+      circleStep = Math.abs(circleValue - data.circlePercent) / 10;
     }, 50);
   }
 }

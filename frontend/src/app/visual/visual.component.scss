@@ -1,25 +1,111 @@
+$radius-small:  304px;
+$radius-big:    454px;
+
+$distance-top: 50%;
+$distance-left-middle: 50%;
+$distance-to-middle: 25%;
+
+$position-value: 52%;
+$position-label: 35%;
+$position-unit: 65%;
+
+$font-size-value: 120px;
+$font-size-label: 50px;
+$font-size-unit: 30px;
+
+$font-size-value-small: 80px;
+$font-size-label-small: 35px;
+$font-size-unit-small: 20px;
+
+$circle-bg-color: #444;
+
+.element-wrapper {
+    display: inline;
+}
+
 .visual {
     display: inline-block;
     position: absolute;
-    left: 50%;
-    transform: translate(-50%, 0);
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    &.visual--1 {
+        left: $distance-left-middle - $distance-to-middle;
+    }
+
+    &.visual--2 {
+        left: $distance-left-middle;
+    }
+
+    &.visual--3 {
+        left: $distance-left-middle + $distance-to-middle;
+    }
 
     .visual__wrapper {
         display: inline-block;
         margin: 0 auto;
         position: relative;
 
+        &::before {
+            content: '';
+            position: absolute;
+            height: $radius-big;
+            width: $radius-big;
+            background-color: $circle-bg-color;
+            border-radius: 50%;
+            top: -2px;
+            left: -2px;
+
+        }
+
         mat-progress-spinner {
             transform: rotate(-180deg);
         }
 
         .visual__value {
-            font-size: 150px;
+            font-size: $font-size-value;
             position: absolute;
-            top: 50%;
+            top: $position-value;
             left: 50%;
 
             transform: translate(-50%, -50%);
+        }
+
+        .visual__label {
+            font-size: $font-size-label;
+            position: absolute;
+            top: $position-label;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+        }
+
+        .visual__unit {
+            font-size: $font-size-unit;
+            position: absolute;
+            top: $position-unit;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    &.visual--small {
+        .visual__value {
+            font-size: $font-size-value-small !important;
+        }
+
+        .visual__label {
+            font-size: $font-size-label-small !important;
+        }
+
+        .visual__unit {
+            font-size: $font-size-unit-small !important;
+        }
+
+        .visual__wrapper::before {
+            height: $radius-small;
+            width: $radius-small;
         }
     }
 }

@@ -29,6 +29,6 @@ class ReadingController extends Controller
 
     public function showAllReadings()
     {
-        return response()->json(Reading::orderBy('created_at', 'desc')->first());
+        return response()->json(Reading::all());
     }
 }
