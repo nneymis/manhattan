@@ -109,3 +109,8 @@ $circle-bg-color: #444;
         }
     }
 }
+
+
+.visual__wrapper ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: inherit;
+}

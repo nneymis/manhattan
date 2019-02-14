@@ -1,3 +1,5 @@
+import { Color } from './color';
+
 export class SensorData {
     id:number;
     label:string;
@@ -8,4 +10,5 @@ export class SensorData {
     //used for displaying:
     currentValue:number;
     circlePercent:number;
+    color:Color;
 }

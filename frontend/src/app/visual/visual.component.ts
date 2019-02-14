@@ -3,7 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { SensorData } from '../sensordata';
 import { SensorService } from '../sensor.service';
 
-const maxPercent = 75;
+const colors = new Map<number, string>(
+  [
+    [0, '#48a236'],
+    [50, '#00eaff'],
+    [100, '#bd3636']
+  ]
+);
 
 @Component({
   selector: 'app-visual',
@@ -13,10 +19,12 @@ const maxPercent = 75;
 export class VisualComponent implements OnInit {
 
   data:SensorData[] = [];
+  color:string = '#eee';
 
   constructor(private sensorService:SensorService) { }
 
   ngOnInit() {
+    this.update();
     setInterval(() => {
       this.update();
     }, 2000);
@@ -39,13 +47,16 @@ export class VisualComponent implements OnInit {
       if (Math.abs(data.currentValue - data.value) < 0.01) {
         data.currentValue = data.value;
         data.circlePercent = circleValue;
+        data.color.colorInterpolation(colors, data.circlePercent);
         clearInterval(interval);
       } else if (data.currentValue < data.value) {
         data.currentValue += step;
         data.circlePercent += circleStep;
+        data.color.colorInterpolation(colors, data.circlePercent);
       } else {
         data.currentValue -= step;
         data.circlePercent -= circleStep;
+        data.color.colorInterpolation(colors, data.circlePercent);
       }
       step = Math.abs(data.value - data.currentValue) / 10;
       circleStep = Math.abs(circleValue - data.circlePercent) / 10;

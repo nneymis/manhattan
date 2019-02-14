@@ -6,6 +6,7 @@
           [value]="data[0].circlePercent"
           diameter="300"
           strokeWidth="40"
+          [ngStyle]="{'stroke':data[0].color.toCss()}"
         ></mat-progress-spinner>
         <span class="visual__value">{{data[0].currentValue | number:'2.2-2'}}</span>
         <span class="visual__label">{{data[0].label}}</span>
@@ -20,6 +21,7 @@
           [value]="data[2].circlePercent"
           diameter="300"
           strokeWidth="40"
+          [ngStyle]="{'stroke':data[2].color.toCss()}"
         ></mat-progress-spinner>
         <span class="visual__value">{{data[2].currentValue | number:'2.2-2'}}</span>
         <span class="visual__label">{{data[2].label}}</span>
@@ -34,6 +36,7 @@
           [value]="data[1].circlePercent"
           diameter="450"
           strokeWidth="55"
+          [ngStyle]="{'stroke':data[1].color.toCss()}"
         ></mat-progress-spinner>
         <span class="visual__value">{{data[1].currentValue | number:'2.2-2'}}</span>
         <span class="visual__label">{{data[1].label}}</span>
