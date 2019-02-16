@@ -5,9 +5,10 @@ import { SensorService } from '../sensor.service';
 
 const colors = new Map<number, string>(
   [
-    [0, '#48a236'],
-    [50, '#00eaff'],
-    [100, '#bd3636']
+    [0, '#50c7d2'],
+    [33, '#60c769'],
+    [66, '#b59f33'],
+    [100, '#c14343']
   ]
 );
 
