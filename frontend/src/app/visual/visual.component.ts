@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { faCog } from '@fortawesome/free-solid-svg-icons';
+
 import { SensorData } from '../sensordata';
 import { SensorService } from '../sensor.service';
 
@@ -17,6 +19,7 @@ const colors = new Map<number, string>(
   styleUrls: ['./visual.component.scss']
 })
 export class VisualComponent implements OnInit {
+  faCog = faCog;
 
   data:SensorData[] = [];
   color:string = '#eee';

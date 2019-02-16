@@ -31,4 +31,26 @@ class ReadingController extends Controller
     {
         return response()->json(Reading::all());
     }
+
+    public function create(Request $request)
+    {
+        $reading = Reading::create($request->all());
+
+        return response()->json(Reading::all(), 201);
+    }
+
+    public function delete() 
+    {
+        Reading::orderBy('created_at', 'desc')->first()->delete();
+        
+        return response()->json(Reading::all(), 200);
+    }
+
+    public function update($id, Request $request)
+    {
+        $reading = Reading::findOrFail($id);
+        $reading->update($request->all());
+
+        return response()->json(Reading::all(), 200);
+    }
 }

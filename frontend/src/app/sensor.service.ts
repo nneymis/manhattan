@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { SensorData } from './sensordata';
@@ -28,5 +29,20 @@ export class SensorService {
     });
 
     return subject.asObservable();
+  }
+
+  newData(newData:SensorData):Observable<SensorData[]> {
+    return this.http.post<SensorData[]>(this.sensorUrl, newData);
+  }
+
+  deleteData():Observable<SensorData[]> {
+    return this.http.delete<SensorData[]>(this.sensorUrl);
+  }
+
+  updateData(data:SensorData):Observable<SensorData[]> {
+    const id = data.id;
+    const url = `${this.sensorUrl}/${id}`;
+
+    return this.http.put<SensorData[]>(url, data);
   }
 }

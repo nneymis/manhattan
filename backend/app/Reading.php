@@ -12,7 +12,7 @@ class Reading extends Model
      * @var array
      */
     protected $fillable = [
-        'lpg', 'co', 'smoke'
+        'label', 'value', 'unit', 'highestValue'
     ];
 
     /**

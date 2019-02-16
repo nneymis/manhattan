@@ -17,5 +17,9 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api', 'middleware' => 'cors'], function () use ($router) {
     $router->options('readings', ['uses' => 'ReadingController@acceptRequest']);
+    $router->options('readings/{id}', ['uses' => 'ReadingController@acceptRequest']);
     $router->get('readings', ['uses' => 'ReadingController@showAllReadings']);
+    $router->post('readings', ['uses' => 'ReadingController@create']);
+    $router->delete('readings', ['uses' => 'ReadingController@delete']);
+    $router->put('readings/{id}', ['uses' => 'ReadingController@update']);
 });

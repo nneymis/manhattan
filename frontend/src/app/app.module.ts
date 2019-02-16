@@ -8,18 +8,24 @@ import { AppComponent } from './app.component';
 import { VisualComponent } from './visual/visual.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { AppRoutingModule } from './app-routing.module';
+import { SettingsComponent } from './settings/settings.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VisualComponent
+    VisualComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [
     {
