@@ -10,7 +10,7 @@ import { Color } from './color';
 })
 export class SensorService {
 
-  private sensorUrl = 'http://localhost/manhattan/backend/public/api/readings';
+  private sensorUrl = 'http://localhost/backend/public/index.php/api/readings';
 
   constructor(
     private http:HttpClient,
