@@ -23,8 +23,8 @@ conn = mysql.connector.connect(
 cursor = conn.cursor()
 
 #get entries / create them if they don't exist
-check(cursor, 1, 'CO')
-check(cursor, 2, 'LPG')
+check(cursor, 1, 'LPG')
+check(cursor, 2, 'CO')
 check(cursor, 3, 'Rauch')
 
 conn.commit()
